@@ -11,7 +11,6 @@ const SignInForm = () => {
     const [signUpIn, setsignUpIn] = useState(false);
     const [validMessage, setvalidMessage] = useState(null);
     const dispatch = useDispatch();
-    const nevigate = useNavigate();
     const email = useRef(null);
     const name = useRef(null);
     const password = useRef(null);
@@ -31,7 +30,6 @@ const SignInForm = () => {
                       }).then(() => {
                             const {uid,email,displayName} = auth.currentUser;
                             dispatch(addUser({uid:uid,email:email,displayName:displayName}));
-                            nevigate("/browse");
                       }).catch((error) => {
                         // An error occurred
                         // ...
@@ -47,7 +45,6 @@ const SignInForm = () => {
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
                     const user = userCredential.user;
-                    nevigate("/browse");
                 })
                 .catch((error) => {
                     const errorCode = error.code;
