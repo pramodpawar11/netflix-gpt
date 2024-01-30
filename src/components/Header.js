@@ -5,12 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useEffect } from "react";
 import { BiBluetooth, BiLogOut ,BiSearchAlt} from "react-icons/bi";
+import { changeSearchBar } from "../utils/gptSlice";
 
 const Header = ()=>{
     const nevigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
-    
+
+    function handleSearchBar(){
+        dispatch(changeSearchBar());
+    }
     function handleSignout() {
         signOut(auth).then(() => {
             nevigate('/');
@@ -33,7 +37,7 @@ const Header = ()=>{
         <div className="py-2 px-2 absolute  bg-gradient-to-b from-black z-10 flex justify-between items-center w-full">
             <img className="h-20" src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png" alt="img" />    
             { user && (<div className="">
-                <button className="text-white py-2 px-3  text-4xl font-bold rounded-3xl mr-16"><BiSearchAlt /></button>
+                <button className="text-white py-2 px-3  text-4xl font-bold rounded-3xl mr-16" onClick={handleSearchBar}><BiSearchAlt /></button>
                 <button className="text-white py-2 px-3  text-4xl bg-red-700 rounded-3xl" onClick={handleSignout}><BiLogOut /></button>
             </div>)}
         </div>

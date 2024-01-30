@@ -1,14 +1,14 @@
 import {createSlice} from "@reduxjs/toolkit"
-const gpt = createSlice({
+const gptSlice = createSlice({
     name:"gpt",
     initialState:{
         searchBar:false,
     },
     reducers:{
-        changeSearchBar:(state,action)=>{
-            state.searchBar = action.payload
+        changeSearchBar:(state)=>{
+            state.searchBar = !state.searchBar
         },
     }
 });
-export const {changeSearchBar} = gpt.actions;
-export default gpt.reducer;
+export const {changeSearchBar} = gptSlice.actions;
+export default gptSlice.reducer;
