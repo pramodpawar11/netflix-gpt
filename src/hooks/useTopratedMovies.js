@@ -1,13 +1,14 @@
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MovieOptions } from "../utils/constants";
 import { addTopratedMovies } from "../utils/moviesSlice";
 import { useEffect } from "react";
 
 const useTopratedMovies = () => {
     const dispatch = useDispatch();
+    const TopRatedMovies = useSelector((store)=>store.movies.TopRatedMovies);
     useEffect(() => {
-        fetchData()
+        !TopRatedMovies && fetchData()
     }, []);
     const fetchData = async () => {
         const data = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', MovieOptions);

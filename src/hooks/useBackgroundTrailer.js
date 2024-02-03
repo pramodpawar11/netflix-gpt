@@ -4,9 +4,11 @@ import { addMoviesTrailer } from "../utils/moviesSlice";
 import { MovieOptions } from "../utils/constants";
 
 const useBackgroundTrailer = (movieId) => {
+    const trailer = useSelector((store)=>store.movies. moviesTrailer);
+
     const dispatch = useDispatch();
     useEffect(() => {
-        fetchData();
+       !trailer && fetchData();
     }, []);
 
     const fetchData = async () => {
