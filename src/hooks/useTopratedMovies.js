@@ -13,7 +13,6 @@ const useTopratedMovies = () => {
         const data = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', MovieOptions);
         const json = await data.json();
         dispatch(addTopratedMovies(json?.results));
-        console.log(json);  
     }
 }
 export default useTopratedMovies;
